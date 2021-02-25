@@ -1,6 +1,6 @@
 <h1>MoveIt - NLW</h1>
 <p>É um site para exercitar durante o trabalho ou o estudo, assim como o pomodoro são intervalos de 25 minutos focados e ao terminar exercircios para cuidar dos seus olhos e do seu corpo.</p>
-<img src="https://github.com/franwanderley/rifatube/blob/master/Rifatube.jpg?raw=true" alt="rifatube">
+<img src="https://github.com/franwanderley/moveit_NLW4/blob/main/moveit-desktop.jpg" alt="rifatube">
 
 <p>Este Projeto foi feito durante a NLW#4 um evento online de uma semana, feito pela RocketSeat </p>
 

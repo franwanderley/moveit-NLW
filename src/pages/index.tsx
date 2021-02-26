@@ -1,16 +1,26 @@
 import Head from 'next/head';
+import {GetServerSideProps} from 'next';
+
 import styles from '../styles/home.module.css';
-import { useContext } from 'react';
 import { ExperienceBar } from "../components/ExperienceBar";
 import { Profile } from "../components/Profile";
 import { CompletedChallenges } from "../components/CompletedChallenges";
 import { Countdown } from "../components/Countdown";
 import { ChallengeBox } from "../components/ChallengeBox";
 import { CountdownProvider } from '../context/CountdownContext';
+import { ChallengesProvider } from '../context/ChallengesContext';
 
-export default function Home() {
+interface HomeProps {
+  level              : number;
+  currentExperience  : number;
+  challengeCompleted : number;
+}
+
+export default function Home(props : HomeProps) {
   return (
-    <div className={styles.container}>
+
+    <ChallengesProvider level={props.level} currentExperience={props.currentExperience} challengeCompleted={props.challengeCompleted}>
+      <div className={styles.container}>
     <Head>
       <title> Inicio | Moveit </title>
     </Head>
@@ -28,5 +38,17 @@ export default function Home() {
         </section>
       </CountdownProvider>
     </div>
+    </ChallengesProvider>
   )
+}
+
+//E aqui onde vamos pegar os dados do back end
+export const getServerSideProps : GetServerSideProps = async (ctx) => { 
+  const {level, currentExperience, challengeCompleted} = ctx.req.cookies;
+  return {
+    props : { level              : Number(level),
+              currentExperience  : Number(currentExperience),
+              challengeCompleted : Number(challengeCompleted)}
+  };
+
 }

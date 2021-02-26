@@ -20,14 +20,12 @@ export function CountdownProvider ({children} : {children : ReactNode}) {
     let countdownTimeout : NodeJS.Timeout;
     const {startNewChallengs} = useContext(ChallengesContext);
     
-    const [time, setTime] = useState<number>(0.1 * 60);
+    const [time, setTime] = useState<number>(25 * 60);
     const [isActive, setIsActive] = useState<boolean>(false);
     const [hasFinished, setHasFinished] = useState<boolean>(false);
 
     const minute = Math.floor(time/60); //Arredonda para baixo
     const second = time % 60; //O resto que será os segundos
-    const [minuteLeft, minuteRight] = String(minute).padStart(2, '0').split('');
-    const [secondLeft, secondRight] = String(second).padStart(2, '0').split('');
 
     //Para parar e continuar o cronometro
     useEffect(() => {
@@ -36,7 +34,7 @@ export function CountdownProvider ({children} : {children : ReactNode}) {
                 setTime(time - 1);
             },1000);
         }else if(isActive && time === 0){
-            setTime(0.1 * 60);
+            setTime(25 * 60);
             setIsActive(false);
             setHasFinished(true);
             startNewChallengs();

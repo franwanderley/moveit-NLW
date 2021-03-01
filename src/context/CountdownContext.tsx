@@ -23,7 +23,6 @@ export function CountdownProvider ({children} : {children : ReactNode}) {
     const [time, setTime] = useState<number>(25 * 60);
     const [isActive, setIsActive] = useState<boolean>(false);
     const [hasFinished, setHasFinished] = useState<boolean>(false);
-
     const minute = Math.floor(time/60); //Arredonda para baixo
     const second = time % 60; //O resto que será os segundos
 
@@ -39,7 +38,7 @@ export function CountdownProvider ({children} : {children : ReactNode}) {
             setHasFinished(true);
             startNewChallengs();
         }else
-            setTime(0.1 * 60);
+            setTime(25 * 60);
     
     }, [isActive, time]);
 

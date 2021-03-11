@@ -1,0 +1,54 @@
+.container {
+    background: var(--white);
+    display : flex;
+    flex-direction: column;
+}
+.container svg{
+    color : #9ea4e9;
+    cursor: pointer;
+}
+.container svg:hover{
+    color : var(--blue-dark);
+}
+.logo{
+    align-self: center;
+    top : .1rem;
+    margin : .5rem;
+}
+.logo h1{
+    font-size: 3rem;
+}
+.menu{
+    align-self: center;
+    display : flex;
+    flex-direction: column;
+    position: absolute;
+    top : 40%;
+}
+.menu h3{
+    font-size: 3rem;
+    margin : .5rem 0;
+}
+.signOut {
+    display : flex;
+    align-self: center;
+    position: absolute;
+    bottom: .1rem;
+}
+.signOut button{
+    font-size: 3rem;
+    border : none;
+    text-align:left;
+    cursor : pointer;
+
+    background : transparent;
+}
+
+@media(max-width : 720px){
+    .logo{
+        margin: 0.3rem;
+    }
+    .logo img{
+        font-size: 4rem;
+    }
+}

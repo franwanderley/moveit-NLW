@@ -2,6 +2,7 @@ import {createContext, ReactNode, useEffect, useState} from 'react';
 import challenges from '../../challenges.json';
 import Cookies from 'js-cookie';
 import { LevelUpModal } from '../components/LevelUpModal';
+import axios from 'axios';
 
 
 interface ChallengesProviderProps {
@@ -41,10 +42,9 @@ export function ChallengesProvider({ children, ...rest} : ChallengesProviderProp
         setLevel(level + 1);
         setIsLevelUpModalOpen(true);
     }
-    function completeChallenge() {
+    async function completeChallenge() {
         if( activeChallenge.amount <= 0 )
             return ;
-        console.log([activeChallenge, currentExperience]);
         const { amount } = activeChallenge;
         let finalExperience = currentExperience + amount;
         if(finalExperience >= experienceToNextLevel){
@@ -52,9 +52,12 @@ export function ChallengesProvider({ children, ...rest} : ChallengesProviderProp
             setCurrentExperience(finalExperience - experienceToNextLevel);
         }else
             setCurrentExperience(finalExperience);
+            
         setActiveChallenge(null);
         setChallengeCompleted(challengeCompleted + 1);
+
     }
+
 
     function startNewChallengs(){
        const randomChallengeIndex = Math.floor(Math.random() * challenges.length);
@@ -83,11 +86,18 @@ export function ChallengesProvider({ children, ...rest} : ChallengesProviderProp
         Notification.requestPermission();
     }, []);
 
-    //Salvar em cookies
+    //Salvar no banco de dados
     useEffect(() => {
-        Cookies.set('level', String(level));
-        Cookies.set('currentExperience', String(currentExperience));
-        Cookies.set('challengeCompleted', String(challengeCompleted));
+      async function onSave(){
+        const username = sessionStorage.getItem('moveit/username');
+        const data = {level, currentExperience, challengeCompleted};
+        console.log(username);
+        const id = await axios({method:"PUT", url : `${process.env.PARTH}/api/users/${username}`, data })
+        .then(res => res.data).catch(error => null);
+        if(!id)
+            console.log('Não salvou!');
+      }
+      onSave();
 
     }, [level, currentExperience, challengeCompleted]);
 

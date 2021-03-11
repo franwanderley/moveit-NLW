@@ -1,54 +1,67 @@
-import Head from 'next/head';
-import {GetServerSideProps} from 'next';
+import {useRouter} from 'next/router';
+import  Head  from "next/head";
+import {FaGithub, FaSignInAlt} from 'react-icons/fa';
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import swal from 'sweetalert';
+import axios from "axios";
+import styles from '../styles/login.module.css';
 
-import styles from '../styles/home.module.css';
-import { ExperienceBar } from "../components/ExperienceBar";
-import { Profile } from "../components/Profile";
-import { CompletedChallenges } from "../components/CompletedChallenges";
-import { Countdown } from "../components/Countdown";
-import { ChallengeBox } from "../components/ChallengeBox";
-import { CountdownProvider } from '../context/CountdownContext';
-import { ChallengesProvider } from '../context/ChallengesContext';
+interface UserGithub{
+  login : string;
 
-interface HomeProps {
-  level              : number;
-  currentExperience  : number;
-  challengeCompleted : number;
 }
 
-export default function Home(props : HomeProps) {
-  return (
+export default function Login() {
 
-    <ChallengesProvider level={props.level} currentExperience={props.currentExperience} challengeCompleted={props.challengeCompleted}>
-      <div className={styles.container}>
-    <Head>
-      <title> Inicio | Moveit </title>
-    </Head>
-      <ExperienceBar/>
-      <CountdownProvider>
-        <section>
-          <div>
-            <Profile/>
-            <CompletedChallenges/>
-            <Countdown/>
-          </div>
-          <div>
-            <ChallengeBox/>
-          </div>
-        </section>
-      </CountdownProvider>
-    </div>
-    </ChallengesProvider>
-  )
-}
+    function handleUsername(event : ChangeEvent<HTMLInputElement>){
+        setUsername(event.target.value);
+    }
 
-//E aqui onde vamos pegar os dados do back end
-export const getServerSideProps : GetServerSideProps = async (ctx) => { 
-  const {level, currentExperience, challengeCompleted} = ctx.req.cookies;
-  return {
-    props : { level              : Number(level),
-              currentExperience  : Number(currentExperience),
-              challengeCompleted : Number(challengeCompleted)}
-  };
+    async function onLogin(event : FormEvent){
+      event.preventDefault();
+      sessionStorage.clear();
+      try {
+        const user = await axios.get('https://api.github.com/users/'+ username).then(res => res.data as UserGithub);
+        if(user?.login){
+          sessionStorage.setItem('moveit/username', username);
+          Router.push('/'+ user?.login);
+        }
+        else
+          swal({title:"Username não encotrado!", text:"Tente Novamente", icon: "warning"});
+        } catch (error) {
+          console.log(error);
+          swal({title:"Username não encotrado!", text:"Tente Novamente", icon: "warning"});
+      }
+    }
 
+    const Router = useRouter();
+    const [username, setUsername] = useState<string>("");
+    useEffect(() => {
+      
+    }, []);
+    return (
+        <div className={styles.container}> 
+            <Head>
+                <title> Login | Moveit </title>
+            </Head>
+            <div className={styles.logobg}>
+                <img src="logo-gradient.png" alt="logo gradient"/>
+            </div>
+            <div className={styles.divlogin}>
+                <h1>
+                    <img src="favicon.png" alt="logo"/>
+                    move<span>.</span>it
+                </h1>
+                <h3>Bem Vindo!</h3>
+                <p><FaGithub/> Faça login com seu GitHub para começar</p>
+                <form onSubmit={onLogin} >
+                  <div className={styles.formlogin}>
+                    <input type="text" onChange={handleUsername} required placeholder="seu username"/>
+                    <button type="submit"><FaSignInAlt/></button>
+                  </div>
+                </form>
+
+            </div>
+        </div>
+    );
 }

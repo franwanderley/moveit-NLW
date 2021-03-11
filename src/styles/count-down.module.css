@@ -76,5 +76,16 @@
 .CountDownButton:disabled{
     background: var(--white);
     color : var(--text);
+    border-bottom: 3px var(--green) solid;
     cursor: not-allowed
+}
+
+.CountDownButton svg{
+    margin-left: .5rem;
+}
+.CountDownButtonActive svg{
+    margin-left: .5rem;
+}
+.CountDownButton:disabled svg{
+    color : var(--green);
 }

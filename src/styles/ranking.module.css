@@ -1,0 +1,109 @@
+.container{
+    width  : 100vw;
+    height : 100vh;
+    margin: 0 1rem;
+    background: var(--gray-line);
+    display : grid;
+    grid-template-columns: 0.1fr 1.8fr;
+    gap: 5rem;
+}
+
+.leaderboard {
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+}
+.leaderboard h2{
+    text-align: left;
+    align-self: left;
+    font-weight: 600;
+    margin: 1rem 0;
+}
+.leaderboard table {
+    text-align:center;
+    min-width: 90%;
+}
+
+.leaderboard table tr th{
+    background: transparent;
+}
+.leaderboard table td {
+    background: var(--white);
+    padding : .5rem;
+    justify-content: space-evenly;
+    font-size: 2rem;
+
+}
+.leaderboard table td div:first-child  img{
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius : 40px;
+}
+.leaderboard table td .level{
+    font-size:1.5rem;
+    display : flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: .5rem;
+}
+.leaderboard table td .level img{
+    margin-right: .3rem;
+}
+
+.leaderboard table td div:first-child{
+    display : flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: center;
+}
+
+.leaderboard table td div:first-child img{
+    margin-right: .4rem;
+}
+
+@media(max-width : 720px){
+    .container{
+        grid-template-columns: 0.1fr 1.8fr;
+        gap: 1rem;
+        margin: 0;
+    }
+    .leaderboard h2{
+        text-align: left;
+        align-self: left;
+        font-weight: 600;
+        margin: 1rem 0;
+    }
+    .leaderboard table {
+        text-align:center;
+        overflow-x: scroll;
+        min-width: 50%;
+    }
+    
+    .leaderboard table td {
+        padding : .3rem;
+        font-size: 1rem;
+    
+    }
+    .leaderboard table td div:first-child  img{
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+    .leaderboard table td .level{
+        font-size:1rem;
+        margin-top: .3rem;
+    }
+    .leaderboard table td .level img{
+        margin-right: .2rem;
+    }
+    
+    .leaderboard table td div:first-child{
+        display : flex;
+        flex-direction: row;
+        align-items:center;
+        justify-content: center;
+    }
+    
+    .leaderboard table td div:first-child img{
+        margin-right: .4rem;
+    }     
+}

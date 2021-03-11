@@ -23,10 +23,3 @@
      <strong>Pronto dps é só acessar a aplicaçâo em http://localhost:3000/</strong>
  </ul>
 
-
-<h2> <g-emoji class="g-emoji" alias="memo" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4dd.png">📝</g-emoji> Falta Fazer</h2>
-<ul>
-    <li>Back-End da Aplicação</li>
-    <li>Criar Autenticação</li>
-    <li>Falta ainda a Aula 5</li>
-</ul>

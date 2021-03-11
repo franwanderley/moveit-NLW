@@ -38,7 +38,7 @@ export function CountdownProvider ({children} : {children : ReactNode}) {
             setHasFinished(true);
             startNewChallengs();
         }else
-            setTime(25 * 60);
+            setTime(0.1 * 60);
     
     }, [isActive, time]);
 

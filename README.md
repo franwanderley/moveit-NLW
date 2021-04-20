@@ -1,5 +1,5 @@
 <h1> <img src="https://github.com/franwanderley/moveit_NLW4/blob/main/public/favicon.png?raw=true" alt="logo"> Move.it 2.0 - NLW</h1>
-<p>É um site para exercitar durante o trabalho ou o estudo, assim como o pomodoro são intervalos de 25 minutos focados e ao terminar exercircios para cuidar dos seus olhos e do seu corpo.</p>
+<p>É um site para exercitar durante o trabalho ou o estudo, assim como o pomodoro são intervalos de 25 minutos focados nos seus trabalhos e estudos e ao terminar o aplicativo mostrar exercircios simples para cuidar dos seus olhos e do seu corpo.</p>
 <img src="https://github.com/franwanderley/moveit_NLW4/blob/main/NLW%20%234%20--%20Movei.jpg" alt="rifatube">
 
 <p>Este Projeto foi feito durante a NLW#4 um evento online de uma semana, feito pela RocketSeat </p>
@@ -8,6 +8,7 @@
 <ul>
     <li>ReactJS</li>
     <li>Typescript</li>
+    <li>Context Api</li>
     <li>NextJS</li>
     <li>FlexBox e CSS Grid</li>
 </ul>

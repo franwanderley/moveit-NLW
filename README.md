@@ -21,6 +21,6 @@
     <li>cd 'seu diretorio'</li>
     <li>npm install</li>
     <li>npm run dev</li>
-     <strong>Pronto dps é só acessar a aplicaçâo em http://localhost:3000/</strong>
+     <strong>Pronto dps é só acessar a aplicação em http://localhost:3000/</strong>
  </ul>
 

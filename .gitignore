@@ -1,7 +1,7 @@
-node_modules
-.vscode
-.vercel
-.next
+node_modules/
+.vscode/
+.vercel/
+.next/
 .env.local
 moveit-desktop.jpg
 moveit-mobile.jpg

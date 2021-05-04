@@ -19,10 +19,11 @@ export default function Login() {
 
     async function onLogin(event : FormEvent){
       event.preventDefault();
-      sessionStorage.clear();
       try {
-        const user = await axios.get('https://api.github.com/users/'+ username).then(res => res.data as UserGithub);
-        if(user?.login){
+        const user = await axios.get('https://api.github.com/users/'+ username)
+        .then(res => res.data as UserGithub)
+        .catch(error => undefined);
+        if(user){
           sessionStorage.setItem('moveit/username', username);
           Router.push('/'+ user?.login);
         }
@@ -36,9 +37,11 @@ export default function Login() {
 
     const Router = useRouter();
     const [username, setUsername] = useState<string>("");
+
     useEffect(() => {
-      
+      sessionStorage.clear();
     }, []);
+
     return (
         <div className={styles.container}> 
             <Head>

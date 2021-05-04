@@ -14,7 +14,12 @@ interface CountdownContextData {
 
 export function CountdownProvider ({children} : {children : ReactNode}) {
 
-    const resetCountdown = () => { setIsActive(false); clearTimeout(countdownTimeout); setHasFinished(false) };
+    const resetCountdown = () => {
+        setIsActive(false);
+        clearTimeout(countdownTimeout);
+        setHasFinished(false) 
+    }
+    
     const startCountDown = () => { setIsActive(true) };
 
     let countdownTimeout : NodeJS.Timeout;
@@ -38,7 +43,7 @@ export function CountdownProvider ({children} : {children : ReactNode}) {
             setHasFinished(true);
             startNewChallengs();
         }else
-            setTime(0.1 * 60);
+            setTime(25 * 60);
     
     }, [isActive, time]);
 

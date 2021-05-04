@@ -21,7 +21,7 @@
 
 body { 
     background-color: var(--background);
-    color: var(text);
+    color: var(--text);
 }
 
 @media(max-width : 1080px){

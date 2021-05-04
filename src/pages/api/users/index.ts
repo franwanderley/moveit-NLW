@@ -36,7 +36,7 @@ export default async (req : NowRequest, res : NowResponse) => {
                 else
                     return res.status(500).json('Não foi possivel inserir usuario');
                 }catch(error){
-                    console.log(error.message());
+                    console.log(error);
                     return res.status(500).json('Não foi possivel inserir usuario');
             }            
         }

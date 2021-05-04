@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import {Sidebar} from '../components/Sidebar';
@@ -29,20 +30,23 @@ export default function ranking(props : {usuarios : Usuarios[]} ){
 
     return (
         <div className={styles.container} >
+            <Head>
+                <title> Ranking | Moveit </title>
+            </Head>
             <Sidebar login={username} />
             <div className={styles.leaderboard}>
                 <h2>Leaderboard</h2>
                 <table>
-                    <tr>                        
+                    <tr key={-1}>                        
                         <th>posição</th>
                         <th>Usuário</th>
                         <th>Desafios</th>
                         <th>Experiência</th>
                     </tr>
-                    {props.usuarios.map(user => (
-                        <tr>
-                            <td>{++i}</td>
-                            <td>
+                    {props?.usuarios?.map(user => (
+                        <tr key={i}>
+                            <td key={i + 'pos'}>{++i}</td>
+                            <td key={i + "usu"}>
                                 <div>
                                     <img src={user.imagem} alt={user.username}/>
                                     {user.nome}
@@ -51,8 +55,8 @@ export default function ranking(props : {usuarios : Usuarios[]} ){
                                     <img src="icons/level.svg" alt="Level"/> {user.level}
                                 </div>
                             </td>
-                            <td>{user.challengeCompleted} completados</td>
-                            <td>{user.currentExperience} xp</td>
+                            <td key={i + "des"}>{user.challengeCompleted} completados</td>
+                            <td key={i + "exp"}>{user.currentExperience} xp</td>
                         </tr>
                     ))}
                     

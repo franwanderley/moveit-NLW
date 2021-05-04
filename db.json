@@ -1,0 +1,40 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "username": "franwanderley",
+      "nome": "wanderley santos",
+      "level": 2,
+      "currentExperience": 76,
+      "challengeCompleted": 2,
+      "imagem": "https://avatars.githubusercontent.com/u/38666227?v=4"
+    },
+    {
+      "id": 2,
+      "username": "matusalem",
+      "nome": "matusalem",
+      "level": 2,
+      "currentExperience": 96,
+      "challengeCompleted": 3,
+      "imagem": "https://avatars.githubusercontent.com/u/8925627?v=4"
+    },
+    {
+      "id": 3,
+      "username": "Lourdes",
+      "nome": "Lourdes",
+      "level": 2,
+      "currentExperience": 26,
+      "challengeCompleted": 1,
+      "imagem": "https://avatars.githubusercontent.com/u/169829?v=4"
+    },
+    {
+      "id": 4,
+      "username": "birobiro",
+      "nome": "Francisco birobiro da Ponte",
+      "level": 2,
+      "currentExperience": 76,
+      "challengeCompleted": 2,
+      "imagem": "https://avatars.githubusercontent.com/u/49970904?v=4"
+    }
+  ]
+}

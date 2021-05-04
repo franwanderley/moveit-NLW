@@ -20,6 +20,7 @@ export default function ranking(props : {usuarios : Usuarios[]} ){
     let i = 0;
     const [username, setUsername] = useState<string>("");
     
+    //Vai ver se está logado
     useEffect(() => {
         if(! sessionStorage?.getItem('moveit/username'))
             Router.push('/');
@@ -38,10 +39,10 @@ export default function ranking(props : {usuarios : Usuarios[]} ){
                 <h2>Leaderboard</h2>
                 <table>
                     <tr key={-1}>                        
-                        <th>posição</th>
-                        <th>Usuário</th>
-                        <th>Desafios</th>
-                        <th>Experiência</th>
+                        <th key="pos">posição</th>
+                        <th key="usu">Usuário</th>
+                        <th key="des">Desafios</th>
+                        <th key="exp">Experiência</th>
                     </tr>
                     {props?.usuarios?.map(user => (
                         <tr key={i}>
@@ -69,8 +70,9 @@ export default function ranking(props : {usuarios : Usuarios[]} ){
 } 
 
 export const getStaticProps : GetStaticProps = async ( ctx ) => { 
-    const usuarios = await axios({method: "GET", url: `${process.env.PARTH}/api/ranking`})
-        .then(res => res.data).catch(error => null);
+    const usuarios = await axios({method: "GET", url: `${process.env.PARTH}/user?_sort=challengeCompleted&_order=asc`})
+    .then(res => res.data)
+    .catch(() => null);
     return {
         props : { usuarios }
     }

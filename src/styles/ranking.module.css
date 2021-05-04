@@ -5,7 +5,7 @@
     background: var(--gray-line);
     display : grid;
     grid-template-columns: 0.1fr 1.8fr;
-    gap: 5rem;
+    gap: 1rem;
 }
 
 .leaderboard {
@@ -37,24 +37,25 @@
 .leaderboard table td div:first-child  img{
     width: 5.5rem;
     height: 5.5rem;
+    margin-left: 2%;
     border-radius : 40px;
 }
 .leaderboard table td .level{
     font-size:1.5rem;
     display : flex;
     flex-direction: row;
-    justify-content: center;
-    margin-top: .5rem;
+    justify-content: flex-start;
 }
 .leaderboard table td .level img{
     margin-right: .3rem;
+    margin-left: 20%;
 }
 
 .leaderboard table td div:first-child{
     display : flex;
     flex-direction: row;
     align-items:center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .leaderboard table td div:first-child img{

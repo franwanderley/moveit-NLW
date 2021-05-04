@@ -70,10 +70,11 @@ export default function Home(props : HomeProps) {
 export const getServerSideProps : GetServerSideProps = async (ctx) => { 
   //Usar Axios
   const {username} = ctx.params;
-  
-  const user = await axios.get( `${process.env.PARTH}/api/users?nome=${username}` )
-  .then(res => res.data as HomeProps)
-  .catch(error => null);
+  let user : HomeProps;
+  if(username){
+    const data  = await (await axios.get(`${process.env.PARTH}/user?username=${username}`)).data; 
+    user = data[0] as HomeProps;
+  }
   if(user){
     return {
       props : { 
@@ -85,17 +86,17 @@ export const getServerSideProps : GetServerSideProps = async (ctx) => {
       }
     }
   }else{
-    //porque não existe
+    //porque não existe no servidor vai criar um novo
     const userGithub = await axios.get('https://api.github.com/users/'+ username).then(res => res.data as UserGithub);
     const data = {
       username,
-      nome : (userGithub?.name === "null" ? userGithub?.name : username),
+      nome : (userGithub?.name === "null" ? username : userGithub?.name),
       level : 1,
       currentExperience : 0,
       challengeCompleted : 0,
       imagem : userGithub?.avatar_url
     }
-    const iduser = await axios.post('http://localhost:3000/api/users', data).then(res => res.data);
+    const iduser = await axios.post(`${process.env.PARTH}/user`, data).then(res => res.data);
     if(iduser){
       return {
         props : { 
